@@ -1,0 +1,22 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+    <div class="container text-center">
+        <div class="row align-items-center mb-3">
+            <p class="fs-3 text-body col-sm-11">Here are your categories</p>
+            <a href="{% url 'inventory:create-category' %}" role="button" class="col sm-1 btn btn-sm btn-outline-dark">
+                Add
+            </a>
+        </div>
+
+        <div class="vstack gap-3 col-md-4 mx-auto">
+            {% for category in object_list %}
+                <a href="{% url 'inventory:category-items' category.pk %}" class="btn btn-outline-dark" role="button">
+                    {{category.name | title}}
+                </a>
+            {% empty %}
+                <p class="fs-4 text-secondary">No categories.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
