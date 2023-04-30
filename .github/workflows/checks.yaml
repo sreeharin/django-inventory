@@ -1,0 +1,19 @@
+name: Django-Inventory CI
+on: [push]
+
+jobs:
+  django-inventory-ci:
+    runs-on: ubuntu-latest
+    container: python:3-slim
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip wheel
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          python manage.py test
