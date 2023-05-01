@@ -99,3 +99,17 @@ class ItemEditView(generic.edit.UpdateView):
         # return super().get_success_url()
         return reverse_lazy(
             'inventory:category-items', args=[self.kwargs['cat_id']])
+
+
+class ItemSearchView(generic.ListView):
+    '''Generic view for showing search results'''
+    model = Item
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset().filter(
+            name__icontains = self.request.GET.get('query'))
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['search'] = True
+        return context

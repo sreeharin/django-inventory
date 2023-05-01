@@ -21,4 +21,5 @@ urlpatterns = [
         view=views.ItemDeleteView.as_view(), name='item-delete'),
     path('category/<int:cat_id>/item/<int:pk>/edit/',
         view=views.ItemEditView.as_view(), name='item-edit'),
+    path('search/', view=views.ItemSearchView.as_view(), name='search')
 ]
