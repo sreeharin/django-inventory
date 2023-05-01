@@ -1,0 +1,14 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+    <div class="container text-center">
+        <p class="fs-3 text-body">Are you sure you want to delete {{object.name | title}}?</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="d-flex justify-content-center gap-3">
+                <input type="submit" value="Delete" class="btn btn-outline-danger">
+                <a href="{% url 'inventory:category-items' category_id %}" class="btn btn-outline-dark" role="button">Go back</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -10,6 +10,9 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=32)
 
+    def __str__(self):
+        return self.name
+
 
 class Item(models.Model):
     category = models.ForeignKey(
@@ -17,3 +20,6 @@ class Item(models.Model):
     name = models.CharField(max_length=32)
     quantity = models.IntegerField(default=0)
     description = models.TextField()
+
+    def __str__(self):
+        return self.name
